@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+:root {
+    --primary-color: #990000;
+    --glass-color: #10101050;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+header{
+    text-align: center;
+}
+
+#timer
+{
+
+}
+
+#juice {
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+    background-color: var(--glass-color);
+    margin: auto;
+}
