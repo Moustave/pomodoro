@@ -7,21 +7,31 @@
 
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: beige;
 }
 
 header{
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-#timer
+#main
 {
-
+    background-color: var(--glass-color);
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-#juice {
-    width: 200px;
-    height: 200px;
-    border-radius: 50px;
+#timer {
+    
+}
+
+
+#bottle {
+    width: 300px;
+    height: 300px;
+    border-radius: 75px;
     background-color: var(--glass-color);
     margin: auto;
 }
