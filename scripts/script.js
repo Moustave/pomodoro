@@ -7,7 +7,7 @@ const pauseTime = 5*60;
 
 let tick = 0;
 let currentInterval;
-let advancement = 1;
+let remaining = 1;
 
 let isGoing = false
 let isWorking = true
@@ -20,11 +20,11 @@ function updateDisplay()
     timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
     if (isWorking)
     {
-        advancement = time / workTime;
+        remaining = time / workTime;
     }
     else
     {
-        advancement = time / pauseTime;
+        remaining = time / pauseTime;
     }
 }
 
@@ -71,19 +71,23 @@ function wave(res, amp, temporalPeriod, wavePeriod)
     //even though width must be the same as the height... just in case
     let width = bottle.offsetWidth;
     let incr = width/res;
-    console.log(bottle.offsetHeight)
     for (let i = 0; i < sauces.length; i++)
     {
+        //relativeMaxHeight makes it so that waves are fully visible even when the bottle is full (or empty)
+        relativeMaxHeight = maxHeight - 4*amp;
         //the height of the sauce
-        let height = (maxHeight - Math.floor(advancement*maxHeight));
+        let height = (relativeMaxHeight - Math.floor(remaining*relativeMaxHeight));
         //make the waves fully visible even when full
-        height += amp;
+        height += 2*amp;
         //path is a csv path, using to mask the sauce. 
         let path = `M`;
         for (let j = 0; j<=res; j++)
         {
             let y = height;
-            y += amp*Math.sin(wavePeriod*j + temporalPeriod * tick/1000);
+            let sauceOffset = i/sauces.length;
+            //im sorry about that, at the beginning I tried my best to do something clean...
+            //TODO : something to easely change the phase of waves
+            y += amp*Math.sin(sauceOffset + wavePeriod*j + Math.cos(1+10.2*(sauceOffset-0.5))*temporalPeriod * tick/1000);
 
             path += `${Math.round(j*incr)},${y} L`;
         }
