@@ -57,5 +57,8 @@ header{
 #play {
     margin: auto;
     font-size: 100px;
-    
+}
+
+#message {
+    text-align: center;
 }
