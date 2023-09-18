@@ -14,7 +14,9 @@ let remaining = 1;
 
 let isGoing = false
 let isWorking = true
-let time = 25*60;
+let time = workTime;
+
+updateDisplay();
 
 function cycle()
 {
@@ -89,7 +91,7 @@ function reset()
     play.classList.remove("fa-circle-xmark");
     play.classList.add("fa-circle-xplay");
     clearInterval(currentInterval);
-    time = 25*60;
+    time = workTime;
 }
 
 function start()
@@ -98,7 +100,7 @@ function start()
     isGoing = true;
     play.classList.remove("fa-circle-xplay");
     play.classList.add("fa-circle-xmark");
-    currentInterval = setInterval(() => update(),10);
+    currentInterval = setInterval(() => update(),1000);
 }
 
 function buttonPressed() {
