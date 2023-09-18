@@ -2,8 +2,8 @@
 
 
 :root {
-    --pause-color: #4d992a99;
-    --tomato-color: #99000099;
+    --pause-color: #5bdf1e42;
+    --tomato-color: #99000066;
     --glass-color: #10101031;
     --light-color: #ffe;
     --dark-color: #222;
@@ -75,12 +75,15 @@ header{
 }
 
 #play {
-    margin: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     font-size: 110px;
 }
 
 #message {
     text-align: center;
+    font-size: 25px;
 }
 
 .text {

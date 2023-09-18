@@ -6,6 +6,8 @@ const message = document.getElementById("message");
 const workTime = 25*60;
 const pauseTime = 5*60;
 
+
+
 let tick = 0;
 let currentInterval;
 let remaining = 1;
@@ -14,16 +16,53 @@ let isGoing = false
 let isWorking = true
 let time = 25*60;
 
+function cycle()
+{
+    isWorking = !isWorking;
+    updateMessage();
+    if (isWorking)
+    {
+        time = workTime;
+    }
+    else
+    {
+        time = pauseTime;
+    }
+    updateSauceColor();
+}
+
+function updateSauceColor(){
+    if (isWorking)
+    {
+        Array.from(sauces).forEach(box => {
+            box.style.backgroundColor = 'var(--tomato-color)';})
+    }
+    else
+    {
+        Array.from(sauces).forEach(box => {
+            box.style.backgroundColor = 'var(--pause-color)';})
+    }
+    
+}
+
+function updateMessage(){
+    let txt = "click to start";
+    if (isGoing)
+    {
+        txt = "REST"
+        if (isWorking)
+        {
+            txt = "WORK"
+        }
+    }
+    
+    message.textContent = txt;
+    
+}
+
 function updateDisplay()
 {
     timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
-
-}
-
-function update()
-{
-    time -=1;
-    
     if (isWorking)
     {
         remaining = time / workTime;
@@ -32,33 +71,47 @@ function update()
     {
         remaining = time / pauseTime;
     }
+}
 
-
+function update()
+{
+    time -=1;
+    if (time <= 0)
+    {
+        cycle();
+    }
     updateDisplay();
 }
 
 function reset()
 {
     isGoing = false;
-        play.classList.remove("fa-circle-xmark");
-        play.classList.add("fa-circle-xplay");
-        clearInterval(currentInterval);
-        time = 25*60;
+    play.classList.remove("fa-circle-xmark");
+    play.classList.add("fa-circle-xplay");
+    clearInterval(currentInterval);
+    time = 25*60;
+}
+
+function start()
+{
+    time -=1;
+    isGoing = true;
+    play.classList.remove("fa-circle-xplay");
+    play.classList.add("fa-circle-xmark");
+    currentInterval = setInterval(() => update(),10);
 }
 
 function buttonPressed() {
     if (isGoing)
     {
         reset();
-        updateDisplay();
     }
     else
     {
-        isGoing = true;
-        play.classList.remove("fa-circle-xplay");
-        play.classList.add("fa-circle-xmark");
-        currentInterval = setInterval(() => update(),10);
+        start();
     }
+    updateDisplay();
+    updateMessage();
 }
 
 
