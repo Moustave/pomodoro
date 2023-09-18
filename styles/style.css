@@ -1,24 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
-svg {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    vertical-align: middle;
-    overflow: hidden;
-  }
 
 :root {
-    --primary-color: #99000099;
+    --pause-color: #4d992a99;
+    --tomato-color: #99000099;
     --glass-color: #10101031;
     --light-color: #ffe;
+    --dark-color: #222;
 }
 
 body{
@@ -56,12 +44,12 @@ header{
 
 .sauce {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 94%;
+    height:94%;
     bottom: 0px;
-    margin: 0px;
-    border-radius: 50px;
-    background-color: var(--primary-color);
+    margin: 3%;
+    border-radius: 60px;
+    background-color: var(--tomato-color);
     z-index: -100;;
 }
 
@@ -88,9 +76,17 @@ header{
 
 #play {
     margin: auto;
-    font-size: 100px;
+    font-size: 110px;
 }
 
 #message {
     text-align: center;
+}
+
+.text {
+    color: var(--light-color);
+}
+
+.shadow {
+    text-shadow: 2px 2px var(--dark-color);
 }

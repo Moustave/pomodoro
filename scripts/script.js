@@ -2,6 +2,7 @@ const timer = document.getElementById("timer");
 const bottle = document.getElementById("bottle");
 const play = document.getElementById("play");
 const sauces = document.getElementsByClassName("sauce");
+const message = document.getElementById("message");
 const workTime = 25*60;
 const pauseTime = 5*60;
 
@@ -13,11 +14,16 @@ let isGoing = false
 let isWorking = true
 let time = 25*60;
 
-timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
-
 function updateDisplay()
 {
     timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
+
+}
+
+function update()
+{
+    time -=1;
+    
     if (isWorking)
     {
         remaining = time / workTime;
@@ -26,19 +32,16 @@ function updateDisplay()
     {
         remaining = time / pauseTime;
     }
-}
 
-function update()
-{
-    time -=1;
+
     updateDisplay();
 }
 
 function reset()
 {
     isGoing = false;
-        play.classList.remove("fa-xmark");
-        play.classList.add("fa-xplay");
+        play.classList.remove("fa-circle-xmark");
+        play.classList.add("fa-circle-xplay");
         clearInterval(currentInterval);
         time = 25*60;
 }
@@ -52,8 +55,8 @@ function buttonPressed() {
     else
     {
         isGoing = true;
-        play.classList.remove("fa-xplay");
-        play.classList.add("fa-xmark");
+        play.classList.remove("fa-circle-xplay");
+        play.classList.add("fa-circle-xmark");
         currentInterval = setInterval(() => update(),10);
     }
 }
@@ -92,9 +95,6 @@ function wave(res, amp, temporalPeriod, wavePeriod)
             path += `${Math.round(j*incr)},${y} L`;
         }
         path += "500,500 L0,500 Z";
-        console.log(path)
-        //path = "M0,100 C150,200 350,0 500,100 L500,500 L0,550 Z"
-        //path = "M0,0 T64,100 T128,100 T192,100 T256,100 T320,100 L500,500 L0,500 Z"
         let sauce = sauces[i];
         sauce.style.clipPath = `path('${path}')`;
     }
