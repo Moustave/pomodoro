@@ -4,12 +4,15 @@ const play = document.getElementById("play");
 const sauces = document.getElementsByClassName("sauce");
 const message = document.getElementById("message");
 const mainBg = document.getElementById("main");
-const workTime = 5;
-const pauseTime = 5;
+const workTimeSlider = document.getElementById("workTimeSlider");
+const workTimeLabel = document.getElementById("workTimeLabel");
+const pauseTimeSlider = document.getElementById("pauseTimeSlider");
+const pauseTimeLabel = document.getElementById("pauseTimeLabel");
+const possibleTimes = [5,60,60*5,60*10,60*15,60*20,60*25,60*30,60*45,60*60,60*90,60*120];
+let workTime = 5;
+let pauseTime = 5;
 
 
-
-let tick = 0;
 let currentInterval;
 let remaining = 1;
 
@@ -17,7 +20,6 @@ let isGoing;
 let isWorking;
 let time;
 reset();
-
 update();
 
 function cycle()
@@ -65,9 +67,14 @@ function updateMessage(){
     
 }
 
+function time2text(t)
+{
+    return `${Math.floor(t/60)}:${(t%60)<10?"0":""}${t%60}`;
+}
+
 function updateDisplay()
 {
-    timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
+    timer.textContent = time2text(time);
     updateMessage();
     updateColor();
 }
@@ -120,14 +127,13 @@ function buttonPressed() {
     update();
 }
 
-
 function wave(res, amp, temporalPeriod, wavePeriod)
 {
     //res is the resolution. = how many points are gonna be computed to draw the waves
     //amp is the amplitude of the waves.
     //temporalPeriod is how fast each point is moving up and down
     //wavePeriod is how much the X position of a point influences the phase
-    tick = Date.now()/15;
+    let tick = Date.now()/15;
     let maxHeight = bottle.offsetHeight;
     //even though width must be the same as the height... just in case
     let width = bottle.offsetWidth;
@@ -158,4 +164,32 @@ function wave(res, amp, temporalPeriod, wavePeriod)
     }
 }
 
-setInterval(() => wave(50,20,54,0.2),20);
+
+//settings
+function updateSettings(){
+    workTimeLabel.textContent = time2text(workTime) + " of work";
+    pauseTimeLabel.textContent = time2text(pauseTime) + " of pause";
+    reset();
+    update();
+}
+
+workTimeSlider.addEventListener("input", (event) =>
+{
+
+    console.log(time2text(possibleTimes[event.target.value]));
+    workTime = possibleTimes[event.target.value];
+    updateSettings();
+    
+});
+pauseTimeSlider.addEventListener("input", (event) =>
+{
+
+    console.log(time2text(possibleTimes[event.target.value]));
+    pauseTime = possibleTimes[event.target.value];
+    updateSettings();
+    
+});
+
+
+
+setInterval(() => wave(50,20,54,0.2),30);

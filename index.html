@@ -18,16 +18,25 @@
                 <div class="sauce"></div>
                 <div class="sauce"></div>
                 <div class="sauce"></div>
-                <div id="timer" class="text shadow">25:00</div>
+                <div id="timer" class="text shadow">...</div>
                 <i id="play" class="fa-regular fa-circle-play text shadow"></i>
-                <div id="message" class="text shadow">click to start</div>
+                <div id="message" class="text shadow">...</div>
             </div>
             
         </div>
     </div>
-    <controls>
-
-    </controls>
+    <div id="settings">
+        <form>
+            <div class="timeSelection" id="workTimeSelection">
+                <input type="range" min="0" max="11" value="6" class="slider" id="workTimeSlider">
+                <label id="workTimeLabel">...</label>
+            </div>
+            <div class="timeSelection" id="pauseTimeSelection">
+                <input type="range" min="0" max="11" value="6" class="slider" id="pauseTimeSlider">
+                <label id="pauseTimeLabel">...</label>
+            </div>
+        </form>
+    </div>
     <footer>
 
     </footer>

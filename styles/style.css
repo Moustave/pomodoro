@@ -3,7 +3,7 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    transition:all 0.1s ease-in-out;
+    transition:all 0.12s ease-in-out;
 }
 
 :root {
@@ -40,19 +40,6 @@ header{
 
 }
 
-
-.sauce {
-    position: absolute;
-    width: 94%;
-    height: 94%;
-    bottom: 0px;
-    margin: 3%;
-    border-radius: 60px;
-    background-color: var(--tomato-color);
-    z-index: -100;;
-}
-
-
 #bottle {
     border-radius: 75px;
     border: solid var(--light-color) 10px;
@@ -69,6 +56,17 @@ header{
     width: 280px;
     height: 280px;
     margin: 10px;
+}
+
+.sauce {
+    position: absolute;
+    width: 94%;
+    height: 94%;
+    bottom: 0px;
+    margin: 3%;
+    border-radius: 60px;
+    background-color: var(--tomato-color);
+    z-index: -100;;
 }
 
 
@@ -91,6 +89,28 @@ header{
     padding-top: 15px;
     text-align: center;
     font-size: 25px;
+}
+
+#settings {
+    background-color: var(--glass-color);
+    padding: 10px;
+}
+
+.timeSelection {
+    text-align: center;
+}
+
+.timeSelection .slider {
+    -webkit-appearance: none;
+    margin: 5px;
+    background-color: var(--light-color);
+    border-radius: 15px;
+    height: 18px;
+}
+
+.timeSelection label {
+    position: absolute;
+    margin-top : 5px;
 }
 
 
