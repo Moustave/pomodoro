@@ -1,46 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pomodoro Timer</title>
-    <script src="scripts/script.js" defer></script>
-</head>
-<body>
-    <header>
-        <h1>POMODORO</h1>
-    </header>
-    <div id="main">
-        <div id="bottleContainer" onclick="buttonPressed()">
-            
-            <div id="bottle">
-                <div class="sauce"></div>
-                <div class="sauce"></div>
-                <div class="sauce"></div>
-                <div id="timer" class="text shadow">...</div>
-                <i id="play" class="fa-regular fa-circle-play text shadow"></i>
-                <div id="message" class="text shadow">...</div>
-            </div>
-            
-        </div>
-    </div>
-    <div id="settings">
-        <form>
-            <div class="timeSelection" id="workTimeSelection">
-                <input name="workTimeSlider" type="range" min="0" max="11" value="6" class="slider" id="workTimeSlider">
-                <label id="workTimeLabel" for="workTimeSlider">...</label>
-            </div>
-            <div class="timeSelection" id="pauseTimeSelection">
-                <input name="pauseTimeSlider" type="range" min="0" max="11" value="6" class="slider" id="pauseTimeSlider">
-                <label id="pauseTimeLabel" for="pauseTimeSlider">...</label>
-            </div>
-        </form>
-    </div>
-    <footer>
 
-    </footer>
-    <script src="https://kit.fontawesome.com/24efd494b0.js" crossorigin="anonymous"></script>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="shortcut icon" href="img/favicon.jpg" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <script src="scripts/script.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>POMODORO</h1>
+  </header>
+  <div id="main">
+    <div id="bottleContainer" onclick="buttonPressed()">
+      <div id="bottle">
+        <div class="sauce"></div>
+        <div class="sauce"></div>
+        <div class="sauce"></div>
+        <div id="timer" class="text shadow">...</div>
+        <i id="play" class="fa-regular fa-circle-play text shadow"></i>
+        <div id="message" class="text shadow">...</div>
+      </div>
+
+    </div>
+  </div>
+  <div id="settings">
+    <form>
+      <div class="timeSelection" id="workTimeSelection">
+        <input name="workTimeSlider" type="range" min="0" max="11" value="6" class="slider" id="workTimeSlider">
+        <label id="workTimeLabel" for="workTimeSlider">...</label>
+      </div>
+      <div class="timeSelection" id="pauseTimeSelection">
+        <input name="pauseTimeSlider" type="range" min="0" max="11" value="6" class="slider" id="pauseTimeSlider">
+        <label id="pauseTimeLabel" for="pauseTimeSlider">...</label>
+      </div>
+    </form>
+  </div>
+  <footer>
+
+  </footer>
+  <script src="https://kit.fontawesome.com/24efd494b0.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
