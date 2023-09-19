@@ -2,7 +2,7 @@
 
 A simple and stylish Pomodoro Timer web app designed to boost your productivity effortlessly.
 
-![App Screenshot 0](img/screenshot0.png)
+<img alt="App Screenshot" src="img/screenshot0.png" width="400">
 
 ## About
 
