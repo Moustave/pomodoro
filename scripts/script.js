@@ -3,8 +3,9 @@ const bottle = document.getElementById("bottle");
 const play = document.getElementById("play");
 const sauces = document.getElementsByClassName("sauce");
 const message = document.getElementById("message");
-const workTime = 25*60;
-const pauseTime = 5*60;
+const mainBg = document.getElementById("main");
+const workTime = 5;
+const pauseTime = 5;
 
 
 
@@ -12,16 +13,16 @@ let tick = 0;
 let currentInterval;
 let remaining = 1;
 
-let isGoing = false
-let isWorking = true
-let time = workTime;
+let isGoing;
+let isWorking;
+let time;
+reset();
 
-updateDisplay();
+update();
 
 function cycle()
 {
     isWorking = !isWorking;
-    updateMessage();
     if (isWorking)
     {
         time = workTime;
@@ -30,21 +31,23 @@ function cycle()
     {
         time = pauseTime;
     }
-    updateSauceColor();
+    update();
 }
 
-function updateSauceColor(){
+function updateColor(){
+    if (!isGoing) mainBg.style.backgroundColor = "var(--glass-color)";
     if (isWorking)
     {
         Array.from(sauces).forEach(box => {
-            box.style.backgroundColor = 'var(--tomato-color)';})
+            box.style.backgroundColor = 'var(--tomato-color)';});
+        if (isGoing) mainBg.style.backgroundColor = "var(--tomato-color)";
     }
     else
     {
         Array.from(sauces).forEach(box => {
-            box.style.backgroundColor = 'var(--pause-color)';})
+            box.style.backgroundColor = 'var(--pause-color)';});
+        if (isGoing) mainBg.style.backgroundColor = "var(--pause-color)";
     }
-    
 }
 
 function updateMessage(){
@@ -65,6 +68,12 @@ function updateMessage(){
 function updateDisplay()
 {
     timer.textContent = `${Math.floor(time/60)}:${(time%60)<10?"0":""}${time%60}`;
+    updateMessage();
+    updateColor();
+}
+
+function update()
+{
     if (isWorking)
     {
         remaining = time / workTime;
@@ -73,11 +82,6 @@ function updateDisplay()
     {
         remaining = time / pauseTime;
     }
-}
-
-function update()
-{
-    time -=1;
     if (time <= 0)
     {
         cycle();
@@ -88,6 +92,7 @@ function update()
 function reset()
 {
     isGoing = false;
+    isWorking = true;
     play.classList.remove("fa-circle-xmark");
     play.classList.add("fa-circle-xplay");
     clearInterval(currentInterval);
@@ -100,7 +105,7 @@ function start()
     isGoing = true;
     play.classList.remove("fa-circle-xplay");
     play.classList.add("fa-circle-xmark");
-    currentInterval = setInterval(() => update(),1000);
+    currentInterval = setInterval(() => {time -=1;update();},1000);
 }
 
 function buttonPressed() {
@@ -112,8 +117,7 @@ function buttonPressed() {
     {
         start();
     }
-    updateDisplay();
-    updateMessage();
+    update();
 }
 
 
@@ -121,10 +125,9 @@ function wave(res, amp, temporalPeriod, wavePeriod)
 {
     //res is the resolution. = how many points are gonna be computed to draw the waves
     //amp is the amplitude of the waves.
-    //temporalPeriod is how fast each point is moving
-    //wavePeriod is how much the X position of a point influences the 
-    console.log(tick)
-    tick += 1;
+    //temporalPeriod is how fast each point is moving up and down
+    //wavePeriod is how much the X position of a point influences the phase
+    tick = Date.now()/15;
     let maxHeight = bottle.offsetHeight;
     //even though width must be the same as the height... just in case
     let width = bottle.offsetWidth;
@@ -155,4 +158,4 @@ function wave(res, amp, temporalPeriod, wavePeriod)
     }
 }
 
-setInterval(() => wave(50,20,54,0.2),20)
+setInterval(() => wave(50,20,54,0.2),20);
