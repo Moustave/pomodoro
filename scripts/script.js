@@ -9,8 +9,9 @@ const workTimeLabel = document.getElementById("workTimeLabel");
 const pauseTimeSlider = document.getElementById("pauseTimeSlider");
 const pauseTimeLabel = document.getElementById("pauseTimeLabel");
 const possibleTimes = [5,60,60*5,60*10,60*15,60*20,60*25,60*30,60*45,60*60,60*90,60*120];
-let workTime = 5;
-let pauseTime = 5;
+let workTime = 25*60;
+let pauseTime = 5*60;
+
 
 
 let currentInterval;
@@ -166,11 +167,30 @@ function wave(res, amp, temporalPeriod, wavePeriod)
 
 
 //settings
+function saveSettings()
+{
+    localStorage.setItem("pomodoroWorkTime", workTime);
+    localStorage.setItem("pomodoroPauseTime", pauseTime);
+}
+
+function loadSettings()
+{
+    let res;
+    res = localStorage.getItem("pomodoroWorkTime");
+    workTime = (res == null ? workTime : parseInt(res));
+    res = localStorage.getItem("pomodoroPauseTime");
+    pauseTime = (res == null ? pauseTime : parseInt(res));
+    saveSettings();
+    workTimeSlider.value = possibleTimes.indexOf(workTime);
+
+    pauseTimeSlider.value = possibleTimes.indexOf(pauseTime);
+}
 function updateSettings(){
     workTimeLabel.textContent = time2text(workTime) + " of work";
     pauseTimeLabel.textContent = time2text(pauseTime) + " of pause";
     reset();
     update();
+    saveSettings();
 }
 
 workTimeSlider.addEventListener("input", (event) =>
@@ -189,7 +209,7 @@ pauseTimeSlider.addEventListener("input", (event) =>
     updateSettings();
     
 });
+loadSettings();
+updateSettings();
 
-
-
-setInterval(() => wave(50,20,54,0.2),30);
+setInterval(() => wave(50,20,54,0.2),40);
