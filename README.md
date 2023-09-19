@@ -24,9 +24,13 @@ Just click the link below to start using the Pomodoro Timer web app:
 
 ## Screenshots
 
-![App Screenshot 1](img/screenshot1.png)
-![App Screenshot 2](img/screenshot1.png)
-![App Screenshot 3](img/screenshot3.png)
+
+<img alt="screenshot1 : bottle filled with tomato sauce" src="img/screenshot1.png" width="200">
+<img alt="screenshot2 : almost empty bottle (timer is low)" src="img/screenshot2.png" width="200">
+<img alt="screenshot3 : green bottle, time to rest!" src="img/screenshot3.png" width="200">
+
+
+
 
 ## Usage
 
