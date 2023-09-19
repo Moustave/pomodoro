@@ -181,8 +181,8 @@ function loadSettings() {
   pauseTimeSlider.value = possibleTimes.indexOf(pauseTime);
 }
 function updateSettings() {
-  workTimeLabel.textContent = time2text(workTime) + " of work";
-  pauseTimeLabel.textContent = time2text(pauseTime) + " of pause";
+  workTimeLabel.textContent = time2text(workTime) + " work";
+  pauseTimeLabel.textContent = time2text(pauseTime) + " pause";
   reset();
   update();
   saveSettings();
