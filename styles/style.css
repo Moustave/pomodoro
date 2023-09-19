@@ -106,6 +106,7 @@ header{
     background-color: var(--light-color);
     border-radius: 15px;
     height: 18px;
+    width: 150px;
 }
 
 .timeSelection label {
